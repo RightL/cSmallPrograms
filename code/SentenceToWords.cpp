@@ -1,15 +1,27 @@
 #include <stdlib.h>
+#include <ctype.h>
 #include <stdio.h>
-int main(int argc, char *argv[])
+int main(void)
 {
     char centence[50]={0};
     char words[20][20]={0};
     int count_words_num=0;
     int count_words_letter=0;
-    if (gets(centence)==NULL)
+    for (int i = 0; i < 50; ++i)
     {
-        printf("In put ERROR!\n");
-        exit(1);
+        if (isalpha(centence[i]))
+        {
+            words[count_words_num][count_words_letter]=centence[i];
+            count_words_letter++;
+        }
+        if (centence[i]==',')
+        {
+            count_words_num++;
+        }
+    }
+    for (int i = 0; i < count_words_num; ++i)
+    {
+        printf("%s\n", words[i]);
     }
     return 0;
 }
