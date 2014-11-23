@@ -20,18 +20,32 @@ int main()
     printf("%d\n",D);
     printf("读作：");
     printf("%s", tho[A-1]);
-    if ((B!=C)&&(B==0||C==0))
+    if ((B!=C)&&(B==0||C==0)&&(C!=D))
     {
         printf("%s",hun[B]);    
         printf("%s",ten[C]);
+        printf("%s",sin[D-1]);
     }
-    else if(B==0&&B==C)
+    else if((C==D)&&(C==0)&&(C!=B))
     {
-    	printf("%s",);
+    	printf("%s",hun[B]);
+    	printf("%s",sin[D-1]);
+    }
+    else if(B==0&&B==C&&C!=D)
+    {
+    	printf("%s",hun[0]);
+    	printf("%s",sin[D-1]);
+    }
+    else if(B==0&&B==C&&C==D)
+    {
+    	printf("");
     }
     else
     {
-        
+         printf("%s",hun[B]);
+         printf("%s",ten[C]);   
+         printf("%s",sin[D-1]);
     }
+    
     return 0;
 }
