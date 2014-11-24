@@ -13,7 +13,7 @@ int main(void)
         printf("In put error!\n");
         exit(1);
     }
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < 80; ++i)
     {
         if (isalpha(centence[i])!=0)
         {
@@ -24,12 +24,13 @@ int main(void)
         if (centence[i]==',')
         {
             ++count_words_num;
-            printf("%d\n", count_words_num);
+            count_words_letter=0;
         }
     }
-    for (int i = 0; i < count_words_num; ++i)
+    count_words_num+=1;
+    for (int j = 0; j < count_words_num; ++j)
     {
-        printf("%s\n", words[i]);
+        printf("%s\n", words[j]);
     }
     return 0;
 }
