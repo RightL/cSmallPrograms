@@ -38,7 +38,6 @@ int main()
     }
     else if(B==0&&B==C&&C==D)
     {
-    	printf("");
     }
     else
     {
