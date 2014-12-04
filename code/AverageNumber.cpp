@@ -7,16 +7,43 @@ struct Lnum
 {
     struct Lnum *pnext;
     float f_number; 
-}
+};
 int main(void)
 {
-    double t_f_number;
-    size_t count_number;
-    char in_put[10]={0};
+    struct Lnum *first=NULL;
+    struct Lnum *current=NULL;
+    struct Lnum *previous=NULL;
+    int count_number=0;
+    float InPutNumber;
     while(true)
     {
-        fgets(in_put,10,stdin);
-        t_f_number=atof(in_put);
+        printf("输入一个数字（输入字母退出输入）：");
+        if (scanf("%f",&InPutNumber))
+        {
+           count_number++; 
+        }  
+        else 
+        {
+           break;
+        }
+        current=(struct Lnum*)malloc(sizeof(struct Lnum));
+        if (first==NULL)
+        {
+            first=current;
+        }
+        if (previous!=NULL)
+        {
+            previous->pnext=current;
+        }
+        current->f_number=InPutNumber;
+        InPutNumber=0;
+        current->pnext=NULL;
+        previous=current;
+    }
+    current=first;
+    while(current!=NULL)
+    {
+        break;
     }
     return 0;
 }
