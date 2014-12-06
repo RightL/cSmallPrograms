@@ -15,6 +15,7 @@ int main(void)
     struct Lnum *previous=NULL;
     int count_number=0;
     float InPutNumber;
+    float total=0;
     while(true)
     {
         printf("输入一个数字（输入字母退出输入）：");
@@ -43,8 +44,12 @@ int main(void)
     current=first;
     while(current!=NULL)
     {
-        break;
+        total+=current->f_number;
+        previous=current;
+        current=current->pnext;
+        free(previous);
     }
+    printf("所有数的平均值为：%f\n", total/count_number);
     return 0;
 }
 
