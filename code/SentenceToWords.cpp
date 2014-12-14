@@ -20,7 +20,7 @@ int main(void)
             words[count_words_num][count_words_letter]=centence[i];
             ++count_words_letter;
             continue;
-        }
+   fkj    }
         if (centence[i]==',')
         {
             ++count_words_num;

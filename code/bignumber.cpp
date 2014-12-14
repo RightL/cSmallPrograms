@@ -45,6 +45,6 @@ int main()
          printf("%s",ten[C]);   
          printf("%s",sin[D-1]);
     }
-    
+    printf("\n");
     return 0;
 }
