@@ -26,7 +26,7 @@ int main(void)
         {
             break;    
         }
-        tmpstring_lenth=strlen(tmpstring);
+        tmpstring_lenth=(int)strlen(tmpstring);
         pRoot=createnode(tmpstring,tmpstring_lenth);
         fflush(stdin);
     }
