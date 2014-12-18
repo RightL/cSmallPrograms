@@ -12,9 +12,10 @@ struct Node
     struct Node *pRight;
 };
 struct Node *createnode(char string[MAX_LEN],int string_lenth);
+struct Node *addnode(char string[],int string_lenth);
 int main(void)
 {
-    char tmpstring[MAX_LEN]={0};        /*mabey we shouldn't initialize it '*/
+    char tmpstring[MAX_LEN]={0};        
     int tmpstring_lenth;
     struct Node *pRoot=NULL;
     while(true)
@@ -50,10 +51,37 @@ struct Node *addnode(char string[],struct Node *pNode,int string_lenth)
     {
         return createnode(string,string_lenth);
     }    
-    if ()
+    if (string_lenth==pNode->string_lenth)
     {
-        
+        ++pNode->count;
+        return pNode;
+    }
+    if (string_lenth<pNode->string_lenth)
+    {
+        if (pNode->pLeft==NULL)
+        {
+            pNode->pLeft=createnode(string,string_lenth);
+            return pNode->pLeft;
+        }
+        else
+        {
+            return addnode(string,string_lenth);
+        }
+    }
+    else
+    {
+        if (pNode->pRight==NULL)
+        {
+            pNode->pRight=createnode(string,string_lenth);
+            return pNode->pRight;
+        }
+        else
+        {
+            return addnode(string,string_lenth);
+        }
     }
 }
+
+
 
 
