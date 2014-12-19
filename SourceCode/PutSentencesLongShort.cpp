@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <cctype>
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -10,6 +11,12 @@ struct Node
     int string_lenth;
     struct Node *pLeft;
     struct Node *pRight;
+};
+struct LinkedList
+{
+    struct LinkedList *pnext;
+    int string_lenth;
+    char string[MAX_LEN];
 };
 struct Node *createnode(char string[MAX_LEN],int string_lenth);
 struct Node *addnode(char string[],struct Node *pNode,int string_lenth);
@@ -36,7 +43,12 @@ int main(void)
         }
         else
         {
-            addnode(tmpstring,pRoot,tmpstring_lenth);
+            if(addnode(tmpstring,pRoot,tmpstring_lenth)==NULL)
+            {
+                static struct LinkedList *first=NULL;
+                static struct LinkedList *current=NULL;
+                static struct LinkedList *previous=NULL;
+            }
         }
         
         fflush(stdin);
@@ -49,6 +61,11 @@ int main(void)
 struct Node *createnode(char string[MAX_LEN],int string_lenth)
 {
     struct Node *pNode=(struct Node *)malloc(sizeof(struct Node));
+    if (pNode==NULL)
+    {
+        printf("malloc faild\n");
+        exit(1);
+    }
     for (int i = 0; i < (int)strlen(string); ++i)
     {
         pNode->item[i]=string[i];       
@@ -67,7 +84,8 @@ struct Node *addnode(char string[],struct Node *pNode,int string_lenth)
     if (string_lenth==pNode->string_lenth)
     {
         ++pNode->count;
-        return pNode;
+
+        return NULL;
     }
     if (string_lenth<pNode->string_lenth)
     {
@@ -122,5 +140,4 @@ void freenodes(struct Node *pNode)
     }
     free(pNode);
 }
-
 
