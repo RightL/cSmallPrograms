@@ -22,10 +22,13 @@ struct Node *createnode(char string[MAX_LEN],int string_lenth);
 struct Node *addnode(char string[],struct Node *pNode,int string_lenth);
 void freenodes(struct Node *pNode);
 void listnodes(struct Node *pNode);
+static struct LinkedList *first=NULL;
+void freelinked(struct LinkedList *first);
 int main(void)
 {
     int tmpstring_lenth;
     struct Node *pRoot=NULL;
+    bool needfree=false;
     printf("输入一个句子(在新行键入回车退出输入)\n");
     while(true)
     {
@@ -45,9 +48,25 @@ int main(void)
         {
             if(addnode(tmpstring,pRoot,tmpstring_lenth)==NULL)
             {
-                static struct LinkedList *first=NULL;
+                needfree=true;
                 static struct LinkedList *current=NULL;
                 static struct LinkedList *previous=NULL;
+                current=(struct LinkedList*)malloc(sizeof(struct LinkedList));
+                if (first==NULL)
+                {
+                 first=current;
+                }
+                if (previous!=NULL)
+                {
+                previous->pnext=current;
+                }
+                current->string_lenth=tmpstring_lenth;
+                for (int i = 0; i < tmpstring_lenth; ++i)
+                {
+                    current->string[i]=tmpstring[i];
+                }
+                current->pnext=NULL;
+                previous=current;
             }
         }
         
@@ -56,6 +75,10 @@ int main(void)
     printf("句子从小到大输出为：\n");
     listnodes(pRoot);
     freenodes(pRoot);
+    if(needfree)
+    {
+        freelinked(first);
+    }
     return 0;
 }
 struct Node *createnode(char string[MAX_LEN],int string_lenth)
@@ -84,7 +107,6 @@ struct Node *addnode(char string[],struct Node *pNode,int string_lenth)
     if (string_lenth==pNode->string_lenth)
     {
         ++pNode->count;
-
         return NULL;
     }
     if (string_lenth<pNode->string_lenth)
@@ -117,10 +139,12 @@ void listnodes(struct Node *pNode)
 {
     if(pNode->pLeft!=NULL)
         listnodes(pNode->pLeft);
-    for (int j = 0; j < pNode->count; ++j)
+    if (pNode->count!=1)
     {
-        printf("%s", pNode->item);
+        struct LinkedList *tmp=NULL;
+
     }
+    printf("%s", pNode->item);
     if (pNode->pRight!=NULL)
     {
         listnodes(pNode->pRight);
@@ -139,5 +163,16 @@ void freenodes(struct Node *pNode)
         freenodes(pNode->pRight);
     }
     free(pNode);
+}
+
+void freelinked(struct LinkedList *current)
+{
+    struct LinkedList *previous=NULL;
+    while(current==NULL)
+    {
+        previous=current;
+        current=current->pnext;
+        free(previous);
+    }
 }
 
