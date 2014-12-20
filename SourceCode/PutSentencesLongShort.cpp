@@ -142,7 +142,15 @@ void listnodes(struct Node *pNode)
     if (pNode->count!=1)
     {
         struct LinkedList *tmp=NULL;
-
+        tmp=first;
+        while(tmp!=NULL)
+        {
+            if (tmp->string_lenth==pNode->string_lenth)
+            {
+                printf("%s", tmp->string);
+            }
+            tmp=tmp->pnext;
+        }
     }
     printf("%s", pNode->item);
     if (pNode->pRight!=NULL)
