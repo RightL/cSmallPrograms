@@ -31,3 +31,4 @@ tags
 *.py
 *.pyc
 *.taghl
+*.vim
