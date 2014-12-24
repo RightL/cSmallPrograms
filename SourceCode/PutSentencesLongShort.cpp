@@ -69,7 +69,6 @@ int main(void)
                 previous=current;
             }
         }
-        
         fflush(stdin);
     }
     printf("句子从小到大输出为：\n");
@@ -183,6 +182,3 @@ void freelinked(struct LinkedList *current)
         free(previous);
     }
 }
-
-
-
