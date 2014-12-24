@@ -23,18 +23,29 @@ int main(void)
             free(pstring[i]);
             break;
         }
-        
         fflush(stdin);
     }
-    printf("Put sentence from Short to Long:\n");
-    for (int j = 0; j < i; ++j)
+    for (int p = 0;  p < i; p++)
     {
-        int min_index=j;
-        if (pstring[j]==NULL)
+        printf("%s", pstring[p]);
+    }
+    printf("Put sentence from Short to Long:\n");
+    int all=0;
+    while(all<i)
+    {
+        int min_index=0;
+        for (int b = 0; b < i; ++b)
         {
-            continue;
+            if (pstring[min_index]==NULL)
+            {
+                min_index++;
+            }
+            else
+            {
+                break;
+            }
         }
-        for (int q = j+1; q < i; ++q)
+        for (int q = 1; q < i; ++q)
         {
             if (pstring[q]==NULL||pstring[min_index]==NULL)
             {
@@ -48,6 +59,7 @@ int main(void)
         printf("%s",pstring[min_index]);
         free(pstring[min_index]);
         pstring[min_index]=NULL;
+        ++all;
     }
     return 0;
 }
