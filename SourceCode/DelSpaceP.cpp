@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <ctype.h>
+#define MAX 50
 int main(void)
 {
-    char string[50];
+    char string[MAX];
     char *pstring=NULL;
     pstring=string;
     fgets(pstring,50,stdin);
