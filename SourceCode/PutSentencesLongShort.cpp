@@ -182,3 +182,4 @@ void freelinked(struct LinkedList *current)
         free(previous);
     }
 }
+
