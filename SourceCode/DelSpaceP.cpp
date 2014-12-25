@@ -1,19 +1,35 @@
 #include <stdio.h>
-#include <ctype.h>
+#include <string.h>
+#include <stdbool.h>
+#include <cctype>
 #define MAX 50
 int main(void)
 {
-    char string[MAX];
+    char string[MAX]={0};
     char *pstring=NULL;
     pstring=string;
-    fgets(pstring,50,stdin);
+    printf("Type a sentense :\n");
+    fgets(pstring,MAX,stdin);
     int count=0;
-    for(int i = 0; i < 50; ++i)
+    int string_lenth;
+    string_lenth=(int)strlen(pstring);
+    while(true)
     {
-        count=i;
-        while(isspace(*(pstring+i))||ispunct(*(pstring+i)))
+        if (count==string_lenth)
         {
-            *(pstring+count)=*(pstring+(count+1));
+            break;
+        }
+        if (isspace(*(pstring+count))||ispunct(*(pstring+count)))
+        {
+            for (int j = count; j <= string_lenth; ++j)
+            {
+                *(pstring+j)=*(pstring+j+1);
+                *(pstring+j+1)=0;
+            }
+        }
+        else
+        {
+            count++;
         }
     } 
     printf("删除空格和标点后的句子是：\n%s",pstring);

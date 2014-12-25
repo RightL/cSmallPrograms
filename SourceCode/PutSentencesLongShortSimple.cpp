@@ -30,8 +30,7 @@ int main(void)
         printf("%s", pstring[p]);
     }
     printf("Put sentence from Short to Long:\n");
-    int all=0;
-    while(all<i)
+    for (int p = 0; p < i; ++p)
     {
         int min_index=0;
         for (int b = 0; b < i; ++b)
@@ -59,7 +58,6 @@ int main(void)
         printf("%s",pstring[min_index]);
         free(pstring[min_index]);
         pstring[min_index]=NULL;
-        ++all;
     }
     return 0;
 }
