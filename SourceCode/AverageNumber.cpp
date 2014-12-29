@@ -14,9 +14,9 @@ int main(void)
     int count_number=0;
     float InPutNumber;
     float total=0;
+    printf("输入一个数字（输入字母退出输入）：");
     while(true)
     {
-        printf("输入一个数字（输入字母退出输入）：");
         if (scanf("%f",&InPutNumber))
         {
            count_number++; 
