@@ -84,8 +84,7 @@ int main (void)
     return 0;
 }
 
-    struct Node *
-createnode (char string[MAX_LEN], int string_lenth)
+struct Node *createnode (char string[MAX_LEN], int string_lenth)
 {
     struct Node *pNode = (struct Node *) malloc (sizeof (struct Node));
     if (pNode == NULL)
@@ -103,8 +102,7 @@ createnode (char string[MAX_LEN], int string_lenth)
     return pNode;
 }
 
-    struct Node *
-addnode (char string[], struct Node *pNode, int string_lenth)
+struct Node *addnode (char string[], struct Node *pNode, int string_lenth)
 {
     if (pNode == NULL)
     {
@@ -141,8 +139,7 @@ addnode (char string[], struct Node *pNode, int string_lenth)
     }
 }
 
-    void
-listnodes (struct Node *pNode)
+void listnodes (struct Node *pNode)
 {
     if (pNode->pLeft != NULL)
         listnodes (pNode->pLeft);
@@ -166,8 +163,7 @@ listnodes (struct Node *pNode)
     }
 }
 
-    void
-freenodes (struct Node *pNode)
+void freenodes (struct Node *pNode)
 {
     if (pNode == NULL)
         return;
@@ -182,8 +178,7 @@ freenodes (struct Node *pNode)
     free (pNode);
 }
 
-    void
-freelinked (struct LinkedList *current)
+void freelinked (struct LinkedList *current)
 {
     struct LinkedList *previous = NULL;
     while (current == NULL)
