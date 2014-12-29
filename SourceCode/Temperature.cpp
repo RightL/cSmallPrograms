@@ -4,7 +4,7 @@
 struct LinkedList
 {
     struct LinkedList *pnext;
-    float daily_demperature[6];
+    float *daily_temperature;
     float average;
 };
 
@@ -15,18 +15,18 @@ int main(void)
     struct LinkedList *first=NULL;
     struct LinkedList *current=NULL;
     struct LinkedList *previous=NULL;
-    int count_number=0;
     int keep=1;
 
-    printf("Type some degrees:\n");
+    printf("Type some tmptemperature:\n");
     
     while(true)
     {
         printf("The next day:\n");
-        float InPutNumber[6]={0};
+        float tmptemperature[6]={0};
+        int count_number=0;
         for (int i = 0; i < 6; ++i)
         {
-            keep=scanf("%f",&InPutNumber[i]);
+            keep=scanf("%f",&tmptemperature[i]);
             if (keep)
             {
                 count_number++;
@@ -50,10 +50,10 @@ int main(void)
         {
             previous->pnext=current;
         }
-        current->average=average_degree(InPutNumber);
+        current->average=average_degree(tmptemperature);
         for (int j = 0; j < count_number; ++j)
         {
-            current->daily_demperature[j]=InPutNumber[j];
+            *(current->daily_temperature+j)=tmptemperature[j];
         }
         current->pnext=NULL;
         previous=current;
@@ -67,12 +67,12 @@ int main(void)
     return 0;
 }
 
-float average_degree(float *InPutNumber)
+float average_degree(float *tmptemperature)
 {
     float average=0;
     for (int i = 0; i < 6; ++i)
     {
-        average+=*(InPutNumber+i);
+        average+=*(tmptemperature+i);
     }
     return average/6;    
 }
