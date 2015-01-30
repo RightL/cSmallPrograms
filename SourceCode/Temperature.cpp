@@ -41,7 +41,7 @@ int main(void)
         {
             break;
         }
-
+        
         current=(struct LinkedList*)calloc(6,sizeof(struct LinkedList));
         if (first==NULL)
         {
@@ -69,6 +69,7 @@ int main(void)
             printf("%f",*(current->daily_temperature+i));
         }
     }
+
     return 0;
 }
 
@@ -81,4 +82,3 @@ float average_degree(float *tmptemperature)
     }
     return average/6;
 }
-

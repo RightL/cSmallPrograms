@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #define MAX_LEN 100
 
+
 struct Node
 {
     char item[MAX_LEN];
