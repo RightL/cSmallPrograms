@@ -83,7 +83,7 @@ int main(void)
         printf("Days %d: ", count_day_print);
         for(int i = 0; i< 6;++i)
         {
-            printf("%f  ",current->daily_temperature[i]);
+            printf("%.2f  ",current->daily_temperature[i]);
         }
         printf("\n");
         average[count_day_print-1]=current->average;
@@ -101,7 +101,7 @@ int main(void)
         {
             printf("\n");
         }
-        printf("Days %d: %f  ", i+1,average[i]);
+        printf("Days %d: %.1f  ", i+1,average[i]);
     }
     return 0;
 }
