@@ -1,2 +1,2 @@
-Default
+C-SmallPrograms
 =======
