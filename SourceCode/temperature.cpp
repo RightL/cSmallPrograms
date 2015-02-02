@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#define READINGS_PER_DAY 6
+
 //用链表储存温度值
 struct LinkedList
 {
     struct LinkedList *pnext;
-    float daily_temperature[6];
+    float daily_temperature[READINGS_PER_DAY];
     float average;
     int count_num;
 };
@@ -28,8 +30,8 @@ int main(void)
     {
         //输入温度值
         printf("The next day:\n");
-        float tmptemperature[6]={0};
-        for (int i = 0; i < 6; ++i)
+        float tmptemperature[READINGS_PER_DAY]={0};
+        for (int i = 0; i < READINGS_PER_DAY; ++i)
         {
             //在第一天的第一个温度值输入一个字母或符号退出输入
             if (i==0)
@@ -66,7 +68,7 @@ int main(void)
         }
         //将一天的温度值存入链表
         current->average=average_degree(tmptemperature);    /*调用计算平均数的函数并存入平均值*/
-        for (int j = 0; j < 6; ++j)
+        for (int j = 0; j < READINGS_PER_DAY; ++j)
         {
             current->daily_temperature[j]=tmptemperature[j];  /*将每天的六个温度存入*/
         }
@@ -81,7 +83,7 @@ int main(void)
     while(current!=NULL)
     {
         printf("Days %d: ", count_day_print);
-        for(int i = 0; i< 6;++i)
+        for(int i = 0; i< READINGS_PER_DAY;++i)
         {
             printf("%.2f  ",current->daily_temperature[i]);
         }
@@ -109,9 +111,9 @@ int main(void)
 float average_degree(float *tmptemperature)
 {
     float average=0;
-    for (int i = 0; i < 6; ++i)
+    for (int i = 0; i < READINGS_PER_DAY; ++i)
     {
         average+=*(tmptemperature+i);
     }
-    return average/6;
+    return average/READINGS_PER_DAY;
 }
