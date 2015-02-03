@@ -6,14 +6,17 @@
 float* allocate_memory(float *data,size_t step);
 float average_num(float *data);
 
-size_t count_num=0;
-size_t max_count_num=0;
+static size_t count_num;
+static size_t max_count_num;
 
 int main(void)
 {
     float *data=NULL;
 
-    printf("Type some numbers:\nTYPE A LETTER TO THE END OF INPUT\n\n");
+    count_num=0;
+    max_count_num=0;
+
+    printf("Type some numbers:\nTYPE A LETTER TO THE END OF INPUT\n");
     //输入
     while(true)
     {
@@ -28,18 +31,18 @@ int main(void)
         } 
         if (!(scanf("%f",data+count_num)))
         {
-            if (count_num%STEP!=0)
-            {
-                for (size_t count_num = 0; count_num < max_count_num; ++count_num)
-                {
-                    free(data+count_num);
-                    data=NULL;
-                }
-                break;
-            }
+            break;
         }
         count_num++;
     }
+    
+    if (count_num==0)
+    {
+        printf("What the hell ?\n");        
+        free(data);
+        exit(0);
+    }
+
     //计算平均数
     printf("\n\naverage : %f\n", average_num(data));
     //free memory
@@ -51,10 +54,9 @@ int main(void)
 //为输入的值分配内存
 float* allocate_memory(float *data,size_t step)
 {
-    float *newdata=NULL;
     max_count_num+=step;
     //allocate_memory
-    newdata=(float*)calloc(1,max_count_num*sizeof(float)); 
+    float *newdata=(float *)calloc(1,max_count_num*sizeof(float));
     if (newdata==NULL)
     {
         printf("failed to allocate_memory\n");
@@ -71,6 +73,7 @@ float* allocate_memory(float *data,size_t step)
         }
     }
     data=newdata;
+    free(newdata);
     newdata=NULL; 
 
     return data;
