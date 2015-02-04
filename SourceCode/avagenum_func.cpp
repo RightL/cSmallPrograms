@@ -29,13 +29,16 @@ int main(void)
                 exit(1);
             }
         } 
-        if (!(scanf("%f",data+count_num)))
+        if (scanf("%f",data+count_num))
+        {
+            count_num++;
+        }
+        else
         {
             break;
         }
-        count_num++;
     }
-    
+    //if nothing input
     if (count_num==0)
     {
         printf("What the hell ?\n");        
@@ -43,6 +46,11 @@ int main(void)
         exit(0);
     }
 
+    if (data==NULL)
+    {
+        printf("Some thing goes wrong \n");
+        exit(1);
+    }
     //计算平均数
     printf("\n\naverage : %f\n", average_num(data));
     //free memory
@@ -68,12 +76,11 @@ float* allocate_memory(float *data,size_t step)
         for (size_t i = 0; i < count_num; ++i)
         {
             *(newdata+i)=*(data+i);  
-            free(data);
-            data=NULL;
         }
+        free(data);
+        data=NULL;
     }
     data=newdata;
-    free(newdata);
     newdata=NULL; 
 
     return data;
@@ -82,11 +89,9 @@ float* allocate_memory(float *data,size_t step)
 float average_num(float *data)
 {
     float total=0;
-    size_t i=0;
-    while(data!=NULL)
+    for (size_t i = 0; i < count_num; ++i)
     {
-        total=*(data+i);
-        i++; 
+        total+=*(data+i);
     }
     return total/count_num;
 }
