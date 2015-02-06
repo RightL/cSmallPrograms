@@ -5,8 +5,6 @@
 
 static const unsigned int step=4;
 
-float average_num(float *data);
-
 int main(void)
 {
     float *data=NULL;
