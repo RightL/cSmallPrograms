@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "useful/cp_allocate_memory.h"
+#include "useful/average_num.h"
 
 static const unsigned int step=4;
 
@@ -46,19 +47,10 @@ int main(void)
         exit(1);
     }
     //计算平均数
-    printf("\n\naverage : %f\n", average_num(data));
+    printf("\n\naverage : %f\n", fl_average_num(data,now_and_max.count_now));
     //free memory
     free(data);
     data=NULL;
     return 0;
-}
-
-//计算平均数
-float average_num(float *data)
-{
-    float total=0;
-    for (unsigned int  i = 0; i < now_and_max.count_now; ++i)
-        total+=*(data+i);
-    return total/now_and_max.count_now;
 }
 
