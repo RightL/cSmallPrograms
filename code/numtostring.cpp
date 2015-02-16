@@ -11,7 +11,7 @@ int main(void)
     return 0;
 }
 
-char *  numtostring(int number)
+char* numtostring(int number)
 {
     char *pstring=NULL;
 
