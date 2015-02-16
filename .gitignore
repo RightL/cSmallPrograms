@@ -28,7 +28,7 @@
 *.app
 # Another
 tags
-*.py
+
 *.pyc
 *.taghl
 *.vim
