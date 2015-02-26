@@ -21,9 +21,7 @@ char* numtostring(int32_t number)
 	bool isnegative = number < 0;
 	if (isnegative)
 		number = -number;                   /*make it mositive*/
-
-	do
-	{
+	do{
 		int8_t tmpnum = number%10;
 	} while(number != 0);
 
