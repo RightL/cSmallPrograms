@@ -43,7 +43,7 @@ int main (void)
         {
             break;
         }
-        tmpstring_lenth = (int) strlen (tmpstring);
+        tmpstring_lenth = static_cast<int>(strlen (tmpstring));
         if (pRoot == NULL)
         {
             pRoot = createnode (tmpstring, tmpstring_lenth);
@@ -55,7 +55,7 @@ int main (void)
                 needfree = true;
                 static struct LinkedList *current = NULL;
                 static struct LinkedList *previous = NULL;
-                current = (struct LinkedList*) malloc (sizeof (struct LinkedList));
+                current = reinterpret_cast<LinkedList *>(malloc (sizeof (LinkedList)));
                 if (first == NULL)
                 {
                     first = current;
@@ -87,13 +87,13 @@ int main (void)
 
 struct Node *createnode (char string[MAX_LEN], int string_lenth)
 {
-    struct Node *pNode = (struct Node *) malloc (sizeof (struct Node));
+    struct Node *pNode = reinterpret_cast<Node *>(malloc (sizeof (struct Node)));
     if (pNode == NULL)
     {
         printf ("malloc faild\n");
         exit (1);
     }
-    for (int i = 0; i < (int) strlen (string); ++i)
+    for (int i = 0; i < static_cast<int>(strlen (string)); ++i)
     {
         pNode->item[i] = string[i];
     }
