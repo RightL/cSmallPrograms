@@ -46,7 +46,7 @@ int main (void)
         tmpstring_lenth = static_cast<int>(strlen (tmpstring));
         if (pRoot == NULL)
         {
-            pRoot = createnode (tmpstring, tmpstring_lenth);
+                pRoot = createnode (tmpstring, tmpstring_lenth);
         }
         else
         {
@@ -96,7 +96,7 @@ struct Node *createnode (char string[MAX_LEN], int string_lenth)
     for (int i = 0; i < static_cast<int>(strlen (string)); ++i)
     {
         pNode->item[i] = string[i];
-    }
+}
     pNode->count = 1;
     pNode->pLeft = pNode->pRight = NULL;
     pNode->string_lenth = string_lenth;
