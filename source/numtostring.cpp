@@ -31,6 +31,9 @@ int main(void)
 	return 0;
 }
 
+/*
+Turn a int number to a string
+*/
 char *numtostring(int number)
 {
 	// '\0' + '-' = 2
