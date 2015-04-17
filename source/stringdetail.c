@@ -12,10 +12,12 @@ char **to_words(char *string, size_t words_count);
 size_t letter_count(char *string);
 char **sort(char *words[]);
 
+const char delim[] = " ,.<>?\'\":;\\`~!@#$^&*()_+-[]{}/\n";
 
 int main(int argc, char const *argv[])
 {
         char *input = NULL;
+        char **pWords = NULL;
 
         switch (argc) {
         case 1:
@@ -48,8 +50,11 @@ int main(int argc, char const *argv[])
                 exit(1);
         }
 
-        printf("%zu\n", string_words_count(input));
-        printf("%zu\n", letter_count(input));
+        size_t words_count = string_words_count(input);
+        pWords = to_words(input, words_count);
+        for (size_t i = 0; i < words_count; i++) {
+                printf("%s\n", *(pWords + i));
+        }
 
         return 0;
 }
@@ -80,14 +85,13 @@ char **to_words(char *string, size_t words_count)
                 printf("Memery allocation failure\n");
                 exit(1);
         }
-        bool new_word = false;
 
-
-
-        for (size_t i = 0, j = 0, strlenth = strlen(string); i < strlenth; i++) {
-                if (isalpha((int)*(string + i))) {
-                } else {
-                }
+        *(pWords) = strtok(string, delim);
+        if ((*pWords)) {
+                for (size_t i = 1; i < words_count; i++)
+                        *(pWords + i) = strtok(NULL, delim);
+        } else {
+                printf("NO words found\n");
         }
 
         return pWords;
@@ -106,7 +110,8 @@ size_t letter_count(char *string)
         return letter_count;
 }
 
-char **sort(char **words) {
+char **sort(char **words)
+{
 
         return words;
 }
