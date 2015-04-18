@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*int is 19*/
-#define MAX_STRING_LEN 19
+/*int is 10*/
+#define MAX_STRING_LEN 10
 
 char *numtostring(int number);
 
@@ -21,12 +21,19 @@ int main(void)
 		return -1;
 	}
 
-	printf("The string is : %s\n\n", numstr);
+	printf("The string is : ");
+	for (int i = static_cast<int>(strlen(numstr)); i >= 0; i--) {
+		printf("%c", *(numstr + i));
+	}
+	printf("\n");
 
 	free(numstr);
 	return 0;
 }
 
+/*
+Turn a int number to a string
+*/
 char *numtostring(int number)
 {
 	// '\0' + '-' = 2
@@ -38,12 +45,14 @@ char *numtostring(int number)
 
 	unsigned int i = 0;
 	do {
-		if (i > MAX_STRING_LEN) {
+		/*Will never happen
+		if (i > MAX_STRING_LEN - 2) {
 			printf("Too long number:%d\n", i);
 			return NULL;
 		}
+		*/
 
-		int8_t tmpnum = static_cast<int8_t>(number%10);
+		int tmpnum = number % 10;
 		number = number / 10;
 		numstr[i] = static_cast<char>('0' + tmpnum);
 
@@ -51,10 +60,10 @@ char *numtostring(int number)
 	} while(number != 0);
 
 	if (isnegative) {
-		numstr[i + 1] = '-';
-		numstr[i + 2] = '\0';
-	} else {
+		numstr[i] = '-';
 		numstr[i + 1] = '\0';
+	} else {
+		numstr[i] = '\0';
 	}
 
 	size_t numstr_len = strlen(numstr) + 1;
