@@ -4,15 +4,14 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define BUFFER_SIZE 200
-#define BUFFER_LETTER 50
+#define BUFFER_SIZE 300
 
 size_t string_words_count(char *string);
 char **to_words(char *string, size_t words_count);
 size_t letter_count(char *string);
-char **sort(char *words[]);
+char **sort(char **words, size_t words_count);
 
-const char delim[] = " ,.<>?\'\":;\\`~!@#$^&*()_+-[]{}/\n";
+static const char delim[] = " ,.<>?\'\":;\\`~!@#$^&*()_+-[]{}/\n";
 
 int main(int argc, char const *argv[])
 {
@@ -51,7 +50,7 @@ int main(int argc, char const *argv[])
         }
 
         size_t words_count = string_words_count(input);
-        pWords = to_words(input, words_count);
+        pWords = sort(to_words(input, words_count),words_count);
         for (size_t i = 0; i < words_count; i++) {
                 printf("%s\n", *(pWords + i));
         }
@@ -110,8 +109,17 @@ size_t letter_count(char *string)
         return letter_count;
 }
 
-char **sort(char **words)
+char **sort(char **words, size_t words_count)
 {
-
+        char *temp = 0;
+        for (size_t i = 0; i < words_count - 1; i++) {
+                for (size_t j = i + 1; j < words_count; j++) {
+                        if (letter_count(*(words + i)) > letter_count(*(words + j))) {
+                                temp = *(words + i);
+                                *(words + i) = *(words + j);
+                                *(words + j) = temp;
+                        }
+                }
+        }
         return words;
 }
