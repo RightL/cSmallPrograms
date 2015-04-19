@@ -1,4 +1,4 @@
-#include "./useful/power.h"
+#include "useful/power.h"
 #include <stdio.h>
 
 int main(int argc, char const *argv[]) {
