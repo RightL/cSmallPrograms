@@ -1,7 +1,8 @@
 #include "useful/power.h"
 #include <stdio.h>
 
-int main(int argc, char const *argv[]) {
+int main(void)
+{
         double value = 0;
         int _power = 0;
         printf("Type the value: ");
