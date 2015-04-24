@@ -50,10 +50,8 @@ int main(int argc, char const *argv[])
         printf("The words in the string in order of length are:\n");
         size_t words_count = string_words_count(input);
         pWords = sort(segment_string(input, words_count),words_count);
-        for (size_t i = 0; i < words_count; i++) {
+        for (size_t i = 0; i < words_count; i++)
                 printf("%s\n", *(pWords + i));
-                free(*(pWords + i));
-        }
 
         free(input);
         input = NULL;
