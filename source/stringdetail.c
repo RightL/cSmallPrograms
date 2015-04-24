@@ -52,8 +52,13 @@ int main(int argc, char const *argv[])
         pWords = sort(segment_string(input, words_count),words_count);
         for (size_t i = 0; i < words_count; i++) {
                 printf("%s\n", *(pWords + i));
+                free(*(pWords + i));
         }
 
+        free(input);
+        input = NULL;
+        free(pWords);
+        pWords = NULL;
         return 0;
 }
 
@@ -110,7 +115,7 @@ size_t letter_count(char string[])
 
 char **sort(char **words, size_t words_count)
 {
-        char *temp = 0;
+        char *temp = NULL;
         for (size_t i = 0; i < words_count - 1; i++) {
                 for (size_t j = i + 1; j < words_count; j++) {
                         if (letter_count(*(words + i)) > letter_count(*(words + j))) {
