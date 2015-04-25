@@ -23,7 +23,8 @@ struct LinkedList
 };
 
 struct Node *createnode (char string[MAX_LEN], int string_lenth);
-struct Node *addnode (char string[], struct Node *pNode, int string_lenth);
+struct Node *addnode (char string[], struct Node *pNode,
+                      int string_lenth);
 void freenodes (struct Node *pNode);
 void listnodes (struct Node *pNode);
 static struct LinkedList *first = NULL;
@@ -52,7 +53,8 @@ int main (void)
                                 needfree = true;
                                 static struct LinkedList *current = NULL;
                                 static struct LinkedList *previous = NULL;
-                                current = reinterpret_cast<LinkedList *>(malloc (sizeof (LinkedList)));
+                                current = reinterpret_cast<LinkedList *>
+                                          (malloc (sizeof (LinkedList)));
                                 if (first == NULL)
                                         first = current;
                                 if (previous != NULL)
@@ -77,7 +79,8 @@ int main (void)
 
 struct Node *createnode (char string[MAX_LEN], int string_lenth)
 {
-        struct Node *pNode = reinterpret_cast<Node *>(malloc (sizeof (struct Node)));
+        struct Node *pNode = reinterpret_cast<Node *>
+                             (malloc (sizeof (struct Node)));
         if (pNode == NULL) {
                 printf ("malloc faild\n");
                 exit (1);
@@ -148,7 +151,7 @@ void freenodes (struct Node *pNode)
 void freelinked (struct LinkedList *current)
 {
         struct LinkedList *previous = NULL;
-        while (current == NULL){
+        while (current == NULL) {
                 previous = current;
                 current = current->pnext;
                 free (previous);
