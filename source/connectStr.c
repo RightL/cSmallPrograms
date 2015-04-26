@@ -8,6 +8,7 @@ int main(void) {
         char terminator = '*';
         char answer = 'y';
         char *pStrings[] = {NULL};
+        printf("Type something\n");
         return 0;
 }
 
