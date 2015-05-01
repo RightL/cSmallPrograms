@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 char *join_strings(char *strings[], size_t strCount);
 char *read_string(char term_end);
@@ -8,15 +9,26 @@ char *read_string(char term_end);
 #define BUFFER_SIZE 50
 
 static const char terminator = '*';
-static const char answer = 'y';
 
 
 int main(void) {
         char *pStrings[] = {NULL};
         char *pStr = NULL;
+        char answer = 'y';
         size_t strCount = 0;
 
         printf("Type something\n");
+        while(tolower(answer) == 'y') {
+                pStrings[strCount] = read_string(terminator);
+                ++strCount;
+
+                printf("Do you wanna enter another ? (Y/n): ");
+                scanf(" %c", &answer);
+                fflush(stdin);
+        }
+
+        pStr = join_strings(pStrings, strCount);
+        printf("\nHere are the strings as a single string:\n%s\n", pStr);
 
         for (size_t i = 0; i < strCount; i++)
                 free(pStrings[i]);
@@ -55,14 +67,22 @@ char *join_strings(char *strings[], size_t strCount) {
 }
 
 char *read_string(char term_end) {
-        char *str = NULL;
+        char *pStr = (char *)malloc(sizeof(char) * BUFFER_SIZE);
+        if (pStr ==NULL) {
+                printf("Memery allocation failure\n");
+                exit(-1);
+        }
+
         size_t i = 0;
-
-        do {
-                str = (char *)malloc(sizeof(char) * BUFFER_SIZE);
-                i++;
-        } while(term_end != (*(str + i) = (char)getchar()));
-
-
-        return 0;
+        while(term_end != (pStr[i++] = (char)getchar())) {
+                if ((i % BUFFER_SIZE) == 0) {
+                        pStr = (char *)realloc(pStr, i + BUFFER_SIZE);
+                        if (pStr == NULL) {
+                                printf("Memery allocation failure\n");
+                                exit(-1);
+                        }
+                }
+        }
+        pStr[i - 1] = '\0';
+        return pStr;
 }
