@@ -19,11 +19,11 @@ int main(void) {
 
         printf("Type something\n");
         while(tolower(answer) == 'y') {
-                pStrings[strCount] = read_string(terminator);
-                ++strCount;
+                pStrings[strCount++] = read_string(terminator);
 
                 printf("Do you wanna enter another ? (Y/n): ");
-                scanf(" %c", &answer);
+                fflush(stdin);
+                scanf("%c", &answer);
                 fflush(stdin);
         }
 
@@ -47,7 +47,7 @@ char *join_strings(char *strings[], size_t strCount) {
                         total_lenth++;
                 }
         }
-
+        
         pStr = (char *)malloc(sizeof(char) * total_lenth);
         if (pStr == NULL) {
                 printf("Memery allocation failure\n");
@@ -84,5 +84,6 @@ char *read_string(char term_end) {
                 }
         }
         pStr[i - 1] = '\0';
+        
         return pStr;
 }
