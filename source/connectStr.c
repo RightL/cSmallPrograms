@@ -7,21 +7,20 @@ char *join_strings(char *strings[], size_t strCount);
 char *read_string(char term_end);
 
 #define BUFFER_SIZE 50
+#define MAX_STR 100
 
 static const char terminator = '*';
 
 
 int main(void) {
-        char *pStrings[] = {NULL};
+        char *pStrings[MAX_STR] = {NULL};
         char *pStr = NULL;
         char answer = 'y';
         size_t strCount = 0;
 
         printf("Type something\n");
-        while(tolower(answer) == 'y') {
-                pStrings[strCount] = read_string(terminator);
-                ++strCount;
-
+        while(strCount < MAX_STR && tolower(answer) == 'y') {
+                pStrings[strCount++] = read_string(terminator);
                 printf("Do you wanna enter another ? (Y/n): ");
                 scanf(" %c", &answer);
                 fflush(stdin);

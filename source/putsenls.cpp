@@ -37,8 +37,7 @@ int main (void)
         bool needfree = false;
         printf ("Type some sentences:\n");
 
-        while (true)
-        {
+        while (true) {
                 tmpstring_lenth = 0;
                 char tmpstring[MAX_LEN] = {0};
                 fgets (tmpstring, MAX_LEN, stdin);
