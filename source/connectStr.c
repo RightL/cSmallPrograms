@@ -19,10 +19,11 @@ int main(void) {
         size_t strCount = 0;
 
         printf("Type something\n");
+
         while(strCount < MAX_STR && tolower(answer) == 'y') {
                 pStrings[strCount++] = read_string(terminator);
                 printf("Do you wanna enter another ? (Y/n): ");
-                scanf(" %c", &answer);
+                scanf("%c", &answer);
                 fflush(stdin);
         }
 
@@ -83,5 +84,6 @@ char *read_string(char term_end) {
                 }
         }
         pStr[i - 1] = '\0';
+
         return pStr;
 }
