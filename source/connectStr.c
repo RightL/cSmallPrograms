@@ -12,7 +12,8 @@ char *read_string(char term_end);
 static const char terminator = '*';
 
 
-int main(void) {
+int main(void)
+{
         char *pStrings[MAX_STR] = {NULL};
         char *pStr = NULL;
         char answer = 'y';
