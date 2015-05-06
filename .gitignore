@@ -33,3 +33,5 @@ tags
 *.taghl
 *.vim
 *.un~
+*.swp
+.swp
