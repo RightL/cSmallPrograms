@@ -43,15 +43,8 @@ char *numtostring(int number)
 	if (isnegative)
 		number = -number;
 
-	unsigned int i = 0;
+	size_t i = 0;
 	do {
-		/*Will never happen
-		if (i > MAX_STRING_LEN - 2) {
-			printf("Too long number:%d\n", i);
-			return NULL;
-		}
-		*/
-
 		int tmpnum = number % 10;
 		number = number / 10;
 		numstr[i] = static_cast<char>('0' + tmpnum);
