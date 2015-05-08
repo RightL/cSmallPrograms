@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "useful/charlimits.h"
 
 /*int is 10*/
 #define MAX_STRING_LEN 10

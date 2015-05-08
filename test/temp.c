@@ -1,7 +1,18 @@
 #include <stdio.h>
- int main(int argc, char const *argv[]) {
-         unsigned long i = 1;
-         size_t j = 2;
-         i = j;
-         return 0;
- }
+#include <string.h>
+int func_a(const char a[]);
+int main(int argc, char const *argv[])
+{
+	func_a("double");
+        const char b[] = "asddf";
+        printf("%s\n", b);
+	return 0;
+}
+
+int func_a(const char a[])
+{
+        if (!strcmp(a,"double")) {
+                printf("YES\n");
+        }
+	return 0;
+}
