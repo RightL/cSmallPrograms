@@ -9,7 +9,7 @@ int main(void)
 	scanf("%lf", &value);
 	printf("Type the power: ");
 	scanf("%d", &_power);
-	printf("The %d power of %lf is %lf\n", _power, value,
+	printf("The%d power of %lf is %lf\n", _power, value,
 	       power(value, _power));
 	return 0;
 }

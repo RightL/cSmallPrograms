@@ -24,9 +24,9 @@ int numLen(void *x, const char numtype[])
 	}
 	methodFloat:{
 		double tmp = *((double*)x) > 0 ?
-				*((double*)x) : -*((double*)x);
+				*((double*)x) : -*((double*)x) * 10;
 		long intx = (long)tmp;
-		while (intx != (long)tmp){
+		while (tmp != (double)intx) {
 			intx = (long) (tmp *= 10);
 			printf("%ld,%lf\n",intx,tmp);
 		}
