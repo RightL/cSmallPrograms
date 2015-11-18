@@ -7,7 +7,7 @@
 #define BUFFER_SIZE 300
 
 size_t string_words_count(char *string);
-char **to_words(char *string, size_t words_count);
+char **segment_string(char *string, size_t words_count);
 size_t letter_count(char *string);
 char **sort(char **words, size_t words_count);
 
@@ -34,9 +34,7 @@ int main(int argc, char const *argv[])
                 break;
         case 2: {
                 size_t strlenth = strlen(argv[1]);
-                printf("%zu\n", strlenth);
                 input = (char *)malloc(sizeof(char) * (strlenth + 1));
-                printf("%zu\n", strlen(input));
                 for (size_t i = 0; i < strlenth; i++)
                         *(input + i) = *(argv[1] + i);
                 *(input + strlenth) = '\n';
@@ -49,12 +47,16 @@ int main(int argc, char const *argv[])
                 exit(1);
         }
 
+        printf("The words in the string in order of length are:\n");
         size_t words_count = string_words_count(input);
-        pWords = sort(to_words(input, words_count),words_count);
-        for (size_t i = 0; i < words_count; i++) {
+        pWords = sort(segment_string(input, words_count),words_count);
+        for (size_t i = 0; i < words_count; i++)
                 printf("%s\n", *(pWords + i));
-        }
 
+        free(input);
+        input = NULL;
+        free(pWords);
+        pWords = NULL;
         return 0;
 }
 
@@ -76,8 +78,8 @@ size_t string_words_count(char *string)
         return string_words_count;
 }
 
-// Turn paragraph to words
-char **to_words(char *string, size_t words_count)
+// Function to segment a string into words and return he number of words
+char **segment_string(char *string, size_t words_count)
 {
         char **pWords = (char **)calloc(words_count, sizeof(char *));
         if (pWords == NULL) {
@@ -97,12 +99,12 @@ char **to_words(char *string, size_t words_count)
 }
 
 // How many letters in the string
-size_t letter_count(char *string)
+size_t letter_count(char string[])
 {
         size_t letter_count = 0;
         int i = 0;
-        while (*(string + i) != '\0') {
-                if (isalpha((int)*(string + i)))
+        while (string[i] != '\0') {
+                if (isalpha((int)string[i]))
                         letter_count++;
                 i++;
         }
@@ -111,7 +113,7 @@ size_t letter_count(char *string)
 
 char **sort(char **words, size_t words_count)
 {
-        char *temp = 0;
+        char *temp = NULL;
         for (size_t i = 0; i < words_count - 1; i++) {
                 for (size_t j = i + 1; j < words_count; j++) {
                         if (letter_count(*(words + i)) > letter_count(*(words + j))) {
